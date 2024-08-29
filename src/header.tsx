@@ -33,7 +33,9 @@ const Header: React.FC = () => {
     >
       <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
         <div className="flex items-center">
-          <img src="/logo.png" alt="logo" className="h-20 rounded-xl" />
+          <Link to="/">
+            <img src="/logo.png" alt="logo" className="h-20 rounded-xl" />
+          </Link>
         </div>
         <nav className="hidden sm:flex space-x-8 items-center text-xl">
           <Link to="/">Home</Link>
@@ -42,28 +44,29 @@ const Header: React.FC = () => {
           <Link to="/contact">Contact</Link>
         </nav>
         <div className="flex items-center space-x-5">
-          <div className="flex items-center relative">
+          <div className="flex items-center  relative">
             <Link to="/cart">
               <IoCartOutline className="w-8 h-8 text-red-600" />
               {cartItemCount > 0 && (
-                <span className="absolute -top-2 -end-2 bg-black text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-black text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
                   {cartItemCount}
                 </span>
               )}
             </Link>
           </div>
+
+          <button
+            className="block sm:hidden ml-2"
+            aria-label="Toggle Menu"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            {showMenu ? (
+              <IoMdClose className="text-2xl" />
+            ) : (
+              <HiOutlineMenuAlt3 className="text-2xl" />
+            )}
+          </button>
         </div>
-        <button
-          className="block sm:hidden ml-4"
-          aria-label="Toggle Menu"
-          onClick={() => setShowMenu(!showMenu)}
-        >
-          {showMenu ? (
-            <IoMdClose className="text-2xl" />
-          ) : (
-            <HiOutlineMenuAlt3 className="text-2xl" />
-          )}
-        </button>
       </div>
       <div
         className={`fixed top-0 left-0 h-full w-full bg-white shadow-lg transform ${
@@ -80,14 +83,14 @@ const Header: React.FC = () => {
           </button>
         </div>
         <nav className="flex flex-col items-center space-y-6 p-6">
-          <img src="/logo2.png" alt="logo" className="h-20 mb-4" />
-          <a
-            href="#home"
+          <img src="/logo.png" alt="logo" className="h-20 mb-4" />
+          <Link
+            to="/"
             className="text-lg font-medium"
             onClick={() => setShowMenu(false)}
           >
             Home
-          </a>
+          </Link>
           <Link
             to="/shop"
             className="text-lg font-medium"
@@ -102,18 +105,13 @@ const Header: React.FC = () => {
           >
             About
           </Link>
-          <a
-            href="#"
-            className="text-lg font-medium"
-            onClick={() => setShowMenu(false)}
-          ></a>
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="text-lg font-medium"
             onClick={() => setShowMenu(false)}
           >
             Contact
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

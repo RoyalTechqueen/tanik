@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <Route path="/shop" element={<Shop />} />
       </Routes>
       <ToastContainer
-        position="top-center"
+        position="top-right"
         autoClose={1000}
         hideProgressBar={true}
         newestOnTop={false}

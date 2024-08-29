@@ -9,7 +9,7 @@ import Header from "../header";
 const Shop: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 21;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
@@ -39,32 +39,48 @@ const Shop: React.FC = () => {
             <span>Back</span>
           </button>
         </div>
-        <div className="grid grid-cols-1 max-w-6xl mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 max-w-6xl mx-auto md:grid-cols-3 lg:grid-cols-3 gap-4">
           {currentItems.map((product) => (
             <div
               key={product.id}
-              className="product-card flex flex-col sm:flex-row md:flex-col items-center bg-white shadow-md rounded-lg p-4"
+              className="product-card relative flex flex-col sm:flex-row md:flex-col items-center bg-white shadow-md rounded-lg p-4"
             >
-              <img
-                src={product.image}
-                alt={product.title}
-                className="product-image w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <div className="flex-grow sm:pl-4 md:pl-0">
+              <div className="relative w-full">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="product-image w-full md:h-48 h-40 object-cover rounded-lg mb-4"
+                />
+                <div className="absolute top-0 right-0 bg-red-600 text-white text-sm px-3 py-2 rounded-md">
+                  {product.size}
+                </div>
+              </div>
+              <div className="md:flex flex-row gap-4 items-center hidden md:pl-0">
                 <h2 className="product-title text-xl font-bold">
                   {product.title}
                 </h2>
-                <p className="product-size text-gray-600 my-2">
-                  {product.size}
-                </p>
               </div>
-              <div className="flex items-center justify-between w-full">
-                <p className="product-price font-bold text-lg mr-4">
+              <div className=" mt-2  md:flex hidden items-center justify-between w-full">
+                <p className="product-price font-semibold text-lg mr-4">
                   {formatPrice(product.price)}
                 </p>
                 <button
                   onClick={() => addToCart(product)}
-                  className="add-to-cart-button bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300"
+                  className=" bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div className="flex flex-col gap-2 items-center md:hidden">
+                <h2 className="product-title text-xl font-bold">
+                  {product.title}
+                </h2>
+                <p className="product-price font-semibold text-lg mr-4">
+                  {formatPrice(product.price)}
+                </p>
+                <button
+                  onClick={() => addToCart(product)}
+                  className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300"
                 >
                   Add to Cart
                 </button>

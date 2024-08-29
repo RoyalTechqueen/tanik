@@ -8,7 +8,7 @@ import Footer from "./footer";
 
 const Home: React.FC = () => {
   return (
-    <div className="bg-red-50">
+    <div className="bg-red-50 ">
       <Header />
       <Hero />
       <BestSeller />

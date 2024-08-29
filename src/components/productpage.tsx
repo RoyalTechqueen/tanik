@@ -39,11 +39,11 @@ const Productpage: React.FC = () => {
         </h1>
         <div className="flex gap-4 items-center">
           <h2> Sort By:</h2>
-          <div className="border rounded  px-8 py-2 bg-white text-md font-medium flex items-center">
+          <div className="border rounded focus:outline-none  px-8 py-2 bg-white text-md font-medium flex items-center">
             <select
               onChange={(e) => setSelectedCategory(e.target.value)}
               value={selectedCategory}
-              className="px-2 py-1"
+              className="px-2 py-1 focus:outline-none"
             >
               <option value="All">All</option>
               <option value="Natural Seasoning">Natural Seasonings</option>
@@ -70,7 +70,7 @@ const Productpage: React.FC = () => {
               onClick={() => paginate(index + 1)}
               className={`px-4 py-2 mx-1 rounded ${
                 currentPage === index + 1
-                  ? "bg-green-600 text-white"
+                  ? "bg-red-600 text-white"
                   : "bg-gray-200 text-gray-700"
               }`}
             >

@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaPhoneAlt, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import Footer from "./footer";
 
 const About: React.FC = () => {
   return (
-    <div>
-      {/* About Section */}
+    <div className="bg-red">
+      <div className="flex items-center fixed top-4 left-4 z-50">
+        <Link to="/">
+          <img src="/logo.png" alt="logo" className="h-20 rounded-xl" />
+        </Link>
+      </div>
       <section id="about" className="bg-red-50 py-16">
         <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl text-center">
@@ -45,7 +49,6 @@ const About: React.FC = () => {
               </p>
             </div>
           </div>
-          {/* Our Products */}
           <div className="mt-12">
             <h3 className="text-2xl font-bold text-gray-900 text-center">
               Our Products
@@ -69,6 +72,10 @@ const About: React.FC = () => {
                 wheat.
               </li>
               <li>
+                <span className="font-bold">Healthy Teas:</span> Healthy
+                Nourishing Teas.
+              </li>
+              <li>
                 <span className="font-bold">Pastry Mix:</span> Easy-to-make
                 mixes for puff puff, pancake, buns, and various cakes.
               </li>
@@ -86,54 +93,18 @@ const About: React.FC = () => {
             Join the Tanik Foods community and start enjoying a healthier
             lifestyle with our natural products.
           </p>
-          <button className="mt-8 inline-block bg-red-600 text-white py-2 px-6 rounded-full text-lg hover:bg-red-700">
-            <Link to="/shop" />
-            Shop Now
+          <button className=" mt-4 px-2 py-2 bg-red-600 hover:bg-red-800 rounded-md">
+            <Link
+              to="/shop"
+              className="inline-block text-white  text-center font-medium py-3 px-5 text-base "
+            >
+              Shop Now
+            </Link>
           </button>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="bg-red-50 py-16">
-        <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl text-center">
-            Contact Us
-          </h2>
-          <p className="mt-4 text-lg text-gray-500 text-center">
-            Have questions or want to learn more about our products? Reach out
-            to us!
-          </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <FaPhoneAlt className="w-8 h-8 text-gray-600" />
-            <a href="tel:+2347036104433" className="font-medium text-gray-600">
-              +2347036104433
-            </a>
-          </div>
-          <div className="mt-8 flex justify-center space-x-4">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaFacebook className="w-8 h-8 text-gray-600 hover:text-gray-800" />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram className="w-8 h-8 text-gray-600 hover:text-gray-800" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaTwitter className="w-8 h-8 text-gray-600 hover:text-gray-800" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <Footer />
     </div>
   );
 };

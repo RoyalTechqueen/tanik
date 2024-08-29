@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useCartStore } from "../store";
 
 interface Product {
-  id: number; // Add id field to Product interface
+  id: number;
   title: string;
   price: number;
   image: string;
@@ -72,7 +72,7 @@ const bestSellers: Product[] = [
 ];
 
 const BestSeller: React.FC = () => {
-  const addToCart = useCartStore((state) => state.addToCart); // Access addToCart function from the store
+  const addToCart = useCartStore((state) => state.addToCart);
 
   const settings = {
     dots: true,
@@ -105,8 +105,10 @@ const BestSeller: React.FC = () => {
   };
 
   return (
-    <section className="py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 overflow-x-hidden">
+      {" "}
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        {" "}
         <h2 className="text-3xl font-bold text-center mb-8">Best Sellers</h2>
         <div className="relative">
           <Slider {...settings}>
@@ -123,12 +125,12 @@ const BestSeller: React.FC = () => {
                       {product.title}
                     </h3>
                     <p className="text-gray-600">{product.size}</p>
-                    <div className=" flex items-center justify-between">
+                    <div className="flex items-center justify-between">
                       <p className="text-gray-600 text-lg font-bold">
                         #{product.price}
                       </p>
                       <button
-                        className="mt-2 bg-green-500 text-white px-4 py-2 rounded-full"
+                        className="mt-2 bg-red-500 text-white px-4 py-2 rounded-full"
                         onClick={() => addToCart(product)}
                       >
                         Add to Cart

@@ -29,25 +29,27 @@ const Footer: React.FC = () => {
               <li className="mb-2">
                 <div className="flex items-center gap-3">
                   <a
-                    href="#"
+                    href="https://www.facebook.com/profile.php?id=61550854575528&mibextid=rS40aB7S9Ucbxw6v"
                     aria-label="Facebook"
-                    className="hover:text-gray-400"
+                    target="blank"
+                    className="hover:text-red-400 flex items-center gap-3"
                   >
                     <FaFacebook size={24} />
+                    <span className="font-semibold text-black">Facebook</span>
                   </a>
-                  <span className="font-semibold text-black">Facebook</span>
                 </div>
               </li>
               <li className="mb-2">
                 <div className="flex items-center gap-3">
                   <a
-                    href="#"
+                    href="https://www.instagram.com/tanik_foods?igsh=MWt6emN2M3B1MmxvNQ=="
                     aria-label="Instagram"
-                    className="hover:text-gray-400"
+                    className="hover:text-red-400 flex items-center gap-3"
+                    target="blank"
                   >
                     <FaInstagram size={24} />
+                    <span className="font-semibold text-black">Instagram</span>
                   </a>
-                  <span className="font-semibold text-black">Instagram</span>
                 </div>
               </li>
             </ul>

@@ -31,10 +31,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       onClick={onClick}
     >
       <img
-        className="w-full h-60 object-cover"
+        className="w-full h-48 object-cover"
         src={product.image}
         alt={product.title}
       />
+      <div className="absolute top-4 left-0 bg-red-600 text-white text-sm px-3 py-2 rounded-md">
+        {product.size}
+      </div>
       <div className="absolute top-4 right-4 bg-white p-2 rounded-full">
         <FaShoppingCart
           className="text-gray-700"
@@ -52,7 +55,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       </div>
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{product.title}</div>
-        <p className="text-gray-700 mb-2">{product.size}</p>
         <div className="flex items-center justify-between gap-4">
           <p className="text-lg text-gray-900 font-semibold">
             {formatPrice(price)}

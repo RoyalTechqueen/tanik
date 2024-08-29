@@ -18,18 +18,17 @@ const Cart: React.FC = () => {
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const clearCart = useCartStore((state) => state.clearCart);
 
-  // Calculate total price
   const total = cart.reduce((sum, item) => {
     const itemTotal = item.quantity * item.price;
     return sum + itemTotal;
   }, 0);
 
   return (
-    <div className="container mx-auto bg-red-50 min-h-screen">
+    <div className="container mx-auto bg-red-50 min-h-screen flex flex-col">
       <Header />
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mt-24 text-center">Cart Page</h1>
-        <div className="flex items-center gap-4 mb-4">
+      <div className="p-4 flex-1 overflow-y-auto">
+        <h1 className="text-xl font-bold mt-24 text-center">Cart Page</h1>
+        <div className="flex items-center gap-4 ">
           <button className="flex items-center text-gray-700">
             <Link to="/">
               <FaArrowLeft className="mr-2" />
@@ -61,50 +60,75 @@ const Cart: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="flex flex-col md:flex-row  lg:flex-row gap-8">
-            <div className="md:w-2/3 bg-red-50 p-6 shadow-md rounded-lg">
+          <div className="flex flex-col md:flex-row md:px-16 md:py-4 gap-8">
+            <div className="md:w-1/2 bg-red-50 p-6 shadow-lg rounded-md max-h-[calc(100vh-12rem)] overflow-y-auto">
               {cart.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col md:flex-row lg:flex-row items-start md:items-center mb-4 border-b pb-4"
+                  className="flex items-center mb-4 border-b pb-4"
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full md:w-48 h-auto md:h-48 object-cover rounded-md"
+                    className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-md"
                   />
-                  <div className="ml-0 md:ml-4 flex-grow mt-4 md:mt-0">
-                    <h2 className="text-lg font-bold">{item.title}</h2>
-                    <p className="text-sm text-gray-600 mt-1">{item.size}</p>
-                    <div className="flex items-center mt-2">
+                  <div className="ml-4 flex flex-col text-left items-center">
+                    <h2 className="text-md font-semibold">{item.title}</h2>
+                    <h3 className="text-lg font-bold ml-4">
+                      {formatPrice(item.price)}
+                    </h3>
+                    <p className="text-md text-gray-600 mt-1">{item.size}</p>
+                    <div className="flex items-center mt-2 sm:hidden">
                       <button
-                        className="px-2 py-1/2 bg-white border border-gray-300"
+                        className="h-10 w-11 rounded-md bg-white border border-gray-300"
                         onClick={() => decreaseQuantity(item.id)}
                       >
                         -
                       </button>
-                      <span className="mx-2">{item.quantity}</span>
+                      <span className="mx-2 text-lg font-semibold">
+                        {item.quantity}
+                      </span>
                       <button
-                        className="px-2 py-1/2 bg-white border border-gray-300"
+                        className="h-10 w-11 rounded-md bg-white border border-gray-300"
                         onClick={() => increaseQuantity(item.id)}
                       >
                         +
                       </button>
                       <button
-                        className="ml-4 px-2 py-1/2 "
+                        className="ml-4 px-2 py-1"
                         onClick={() => removeFromCart(item.id)}
                       >
-                        <FaRegTrashAlt className="h-4 w-4" />
+                        <FaRegTrashAlt className="h-6 w-6" />
                       </button>
                     </div>
                   </div>
-                  <div className="text-lg font-bold ml-0 md:ml-4 mt-2 md:mt-0">
-                    {formatPrice(item.price)}
+                  <div className="flex items-center hidden md:flex ml-8">
+                    <button
+                      className="h-10 w-11 rounded-md bg-white border border-gray-300"
+                      onClick={() => decreaseQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <span className="mx-2 text-lg font-semibold">
+                      {item.quantity}
+                    </span>
+                    <button
+                      className="h-10 w-11 rounded-md bg-white border border-gray-300"
+                      onClick={() => increaseQuantity(item.id)}
+                    >
+                      +
+                    </button>
+                    <button
+                      className="ml-4 px-2 py-1"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      <FaRegTrashAlt className="h-6 w-6" />
+                    </button>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="md:w-1/3 bg-red-50 p-6 shadow-md rounded-lg">
+            <div className="md:w-1/2 bg-red-50 p-6 shadow-md rounded-lg">
               <h2 className="text-xl font-bold mb-4">Order Summary</h2>
               {cart.length > 0 && (
                 <>

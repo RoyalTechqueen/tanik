@@ -29,18 +29,34 @@ const Contact: React.FC = () => {
               <div className="flex flex-col gap-8 items-start justify-between  px-4 py-12 md:py-20">
                 <div className="flex items-center gap-4">
                   <FaPhoneAlt className="w-8 h-8" />
-                  <a href="tel:+2347036104433" className="font-medium">
+                  <a
+                    href="tel:+2347036104433"
+                    className="font-medium"
+                    target="blank"
+                  >
                     +2347036104433
                   </a>
                 </div>
 
                 <div className="flex items-center gap-4 ">
                   <FaWhatsapp className="w-8 h-8 " />
-                  <p className="font-medium">+2348055284718</p>
+                  <a
+                    href="https://wa.me/+2348055284718"
+                    className="font-medium"
+                    target="blank"
+                  >
+                    +2348055284718
+                  </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <MdEmail className="w-8 h-8" />
-                  <p className="font-medium">tanikfoods@gmail.com</p>
+                  <a
+                    href="mailto:tanikfoods@gmail.com"
+                    className="font-medium"
+                    target="blank"
+                  >
+                    tanikfoods@gmail.com
+                  </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <IoLocationOutline className="w-8 h-8" />
