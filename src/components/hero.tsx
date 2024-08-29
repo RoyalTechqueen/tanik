@@ -14,8 +14,8 @@ const Hero: React.FC = () => {
           </span>
         </h1>
 
-        <p className="text-black text-center text-md lg:text-lg mb-6 max-w-full mx-auto">
-          Where Spice is Life and Health is wealth.
+        <p className="text-black text-center text-md  lg:text-2xl mb-6 max-w-full mx-auto">
+          Healthy Option, Easy Cooking.
         </p>
 
         <div className="flex md:flex-col flex-row items-center mx-auto gap-3 lg:flex-row lg:space-x-5 lg:space-y-0">

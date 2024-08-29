@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -6,8 +7,43 @@ import Header from "../header";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import Footer from "../footer";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const Contact: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    emailjs
+      .send(
+        "service_q6m55ml",
+        "template_z8b9tk5",
+        formData,
+        "Kq08q1gJVPbgCqtmH"
+      )
+      .then(() => {
+        setLoading(false);
+        toast.success("Message sent Succesfully!");
+        setFormData({ name: "", phone: "", email: "", message: "" });
+      })
+      .catch(() => {
+        toast.error("Failed to send the message, please try again later.");
+      });
+  };
   return (
     <div className="container mx-auto bg-red-50 min-h-screen">
       <Header />
@@ -80,7 +116,10 @@ const Contact: React.FC = () => {
                 Get in touch
               </h2>
               <div className="relative">
-                <form className="grid grid-cols-1 gap-y-6 text-left sm:grid-cols-2 sm:gap-x-8 px-4 rounded-2xl py-8 mx-4">
+                <form
+                  onSubmit={handleSubmit}
+                  className="grid grid-cols-1 gap-y-6 text-left sm:grid-cols-2 sm:gap-x-8 px-4 rounded-2xl py-8 mx-4"
+                >
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium">
                       Full Name
@@ -90,6 +129,8 @@ const Contact: React.FC = () => {
                         type="text"
                         id="name"
                         name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         className=" w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                         required
                       />
@@ -107,6 +148,8 @@ const Contact: React.FC = () => {
                         type="tel"
                         id="phone"
                         name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         className=" w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                         required
                       />
@@ -124,6 +167,8 @@ const Contact: React.FC = () => {
                         id="email"
                         name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                         className="rounded-md border border-input bg-background px-3 py-2 text-sm w-full"
                       />
@@ -140,6 +185,8 @@ const Contact: React.FC = () => {
                       <textarea
                         id="message"
                         name="message"
+                        value={formData.message}
+                        onChange={handleChange}
                         rows={5}
                         className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm "
                         required
@@ -149,9 +196,10 @@ const Contact: React.FC = () => {
                   <div className=" w-full flex flex-col items-center justify-center text-center sm:col-span-2">
                     <button
                       type="submit"
+                      disabled={loading}
                       className=" block w-full transition-color relative inline-flex items-center justify-center  bg-red-500 text-white px-3 py-2 rounded-full cursor-pointer hover:bg-red-700"
                     >
-                      Submit
+                      {loading ? "Sending..." : "Submit"}
                     </button>
                   </div>
                 </form>
