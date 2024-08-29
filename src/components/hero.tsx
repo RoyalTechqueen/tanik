@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Hero: React.FC = () => {
   return (
     <section className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between min-h-screen bg-red-100 p-8 overflow-visible">
-      <div className="flex flex-col items-center mt-16 lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0 z-10 mb-12 lg:mb-0">
+      <div className="flex flex-col items-center mt-16 lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0  mb-12 lg:mb-0">
         <h1 className="font-display font-bold mx-auto max-w-2xl tracking-tight text-center">
           <span className="block text-xl sm:text-6xl md:text-7xl">
             Welcome to

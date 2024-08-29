@@ -1,18 +1,102 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
 
 const About: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="bg-red">
-      <div className="flex items-center fixed top-4 left-4 z-50">
-        <Link to="/">
-          <img src="/logo.png" alt="logo" className="h-20 rounded-xl" />
-        </Link>
-      </div>
+      <header
+        className={`fixed w-full z-10 transition-colors duration-300 ${
+          isScrolled ? "bg-red-50" : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
+          <div className="flex items-center">
+            <Link to="/">
+              <img src="/logo.png" alt="logo" className="h-20 rounded-xl" />
+            </Link>
+          </div>
+
+          <div className="flex items-center space-x-5">
+            <button
+              className="block sm:hidden ml-2"
+              aria-label="Toggle Menu"
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              {showMenu ? (
+                <IoMdClose className="text-2xl" />
+              ) : (
+                <HiOutlineMenuAlt3 className="text-2xl" />
+              )}
+            </button>
+          </div>
+        </div>
+        <div
+          className={`fixed top-0 left-0 h-full w-full bg-white shadow-lg transform ${
+            showMenu ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out sm:hidden`}
+        >
+          <div className="flex justify-end p-4">
+            <button
+              className="text-2xl"
+              aria-label="Close Menu"
+              onClick={() => setShowMenu(false)}
+            >
+              <IoMdClose />
+            </button>
+          </div>
+          <nav className="flex flex-col items-center space-y-6 p-6">
+            <img src="/logo.png" alt="logo" className="h-20 mb-4" />
+            <Link
+              to="/"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Home
+            </Link>
+            <Link
+              to="/shop"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Shop
+            </Link>
+            <Link
+              to="/about"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              About
+            </Link>
+            <Link
+              to="/contact"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Contact
+            </Link>
+          </nav>
+        </div>
+      </header>
       <section id="about" className="bg-red-50 py-16">
         <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl text-center  mt-12">
             About Tanik Foods
           </h2>
           <p className="mt-4 text-lg text-gray-500 text-center">
