@@ -42,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
         <FaShoppingCart
           className="text-gray-700"
           onClick={(e) => {
-            e.stopPropagation(); // Prevent click event from firing on the card itself
+            e.stopPropagation();
             addToCart({
               id: product.id,
               title: product.title,

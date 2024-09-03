@@ -16,58 +16,58 @@ const bestSellers: Product[] = [
   {
     id: 1,
     title: "PuffPuff Mix",
-    price: 2500,
+    price: 3000,
     image: "/puffpuff.jpg",
-    size: "Big Size",
+    size: "700grms",
   },
   {
     id: 2,
     title: "Multipurpose seasoning",
-    price: 3000,
+    price: 2000,
     image: "/multipurpose.jpg",
-    size: "Big Size",
+    size: "100grms",
   },
   {
     id: 3,
     title: "Aromatic seasoning",
-    price: 3000,
+    price: 2000,
     image: "/aromatic.jpg",
-    size: "Big size",
+    size: "100grms",
   },
   {
     id: 4,
     title: "Red Velvet Cake Mix",
-    price: 3500,
+    price: 3700,
     image: "/red velvet.jpg",
-    size: "Big Size",
+    size: "630grms",
   },
   {
     id: 5,
     title: "Zobo(Hibiscus) Tea",
     price: 2000,
     image: "/zobo.jpg",
-    size: "Big Size",
+    size: "20 teabags",
   },
   {
     id: 6,
     title: "Yaji seasoning",
-    price: 3000,
+    price: 2000,
     image: "/yaji.jpg",
-    size: "Big size",
+    size: "100grms",
   },
   {
     id: 7,
     title: "Black Seeds and Mint Tea",
     price: 2000,
     image: "/blasmin.jpg",
-    size: "Big Size",
+    size: "20 teabags",
   },
   {
     id: 8,
     title: "Vanilla Cake Mix",
     price: 3500,
     image: "/vanilla.jpg",
-    size: "Big Size",
+    size: "730grms",
   },
 ];
 
@@ -118,7 +118,7 @@ const BestSeller: React.FC = () => {
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 xl:h-72 object-cover"
                   />
                   <div className="p-4">
                     <h3 className="text-lg font-bold text-center">

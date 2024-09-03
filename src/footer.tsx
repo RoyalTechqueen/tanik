@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const Footer: React.FC = () => {
   return (
     <footer className="bg-red-200 text-red-600 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2  gap-8 mb-8">
+      <div className="max-w-screen-8xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-bold mb-4">Tanik Foods</h3>
             <ul>
@@ -20,6 +20,17 @@ const Footer: React.FC = () => {
                 <Link to="/contact" className="hover:underline">
                   Contact Us
                 </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">Help</h3>
+            <ul>
+              <li className="mb-2">
+                <Link to="#">Order Tracking</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="#">Privacy policy</Link>
               </li>
             </ul>
           </div>

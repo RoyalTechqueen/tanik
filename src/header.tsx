@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         isScrolled ? "bg-red-50" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
+      <div className="mx-auto flex max-w-screen-8xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
         <div className="flex items-center">
           <Link to="/">
             <img src="/logo.png" alt="logo" className="h-20 rounded-xl" />

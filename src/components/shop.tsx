@@ -9,11 +9,16 @@ import Header from "../header";
 const Shop: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 21;
+  const itemsPerPage = 24;
+
+  const sortedProducts = [...products].sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const currentItems = sortedProducts.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -25,7 +30,7 @@ const Shop: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto bg-red-50 min-h-screen">
+    <div className=" bg-red-50 min-h-screen">
       <Header />
       <div className="p-4">
         <h1 className="text-2xl md:text-5xl font-bold mt-24 text-center">
@@ -39,7 +44,7 @@ const Shop: React.FC = () => {
             <span>Back</span>
           </button>
         </div>
-        <div className="grid grid-cols-2 max-w-6xl mx-auto md:grid-cols-3 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 max-w-8xl mx-auto md:grid-cols-3 lg:grid-cols-3  xl:grid-cols-4 gap-4">
           {currentItems.map((product) => (
             <div
               key={product.id}
@@ -60,13 +65,13 @@ const Shop: React.FC = () => {
                   {product.title}
                 </h2>
               </div>
-              <div className=" mt-2  md:flex hidden items-center justify-between w-full">
+              <div className="mt-2 md:flex hidden items-center justify-between w-full">
                 <p className="product-price font-semibold text-lg mr-4">
                   {formatPrice(product.price)}
                 </p>
                 <button
                   onClick={() => addToCart(product)}
-                  className=" bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300"
+                  className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300"
                 >
                   Add to Cart
                 </button>

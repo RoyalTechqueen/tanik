@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between min-h-screen bg-red-100 p-8 overflow-visible">
-      <div className="flex flex-col items-center mt-16 lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0  mb-12 lg:mb-0">
-        <h1 className="font-display font-bold mx-auto max-w-2xl tracking-tight text-center">
-          <span className="block text-xl sm:text-6xl md:text-7xl">
+    <section className="relative flex flex-col lg:flex-row items-center justify-center  lg:justify-between min-h-screen bg-red-100 p-8">
+      <div className="flex flex-col items-center mt-24 md:mt-20 lg:mt-4 lg:items-start text-center lg:text-left  mb-12 lg:mb-0">
+        <h1 className="font-display font-bold mx-auto max-w-xl tracking-tight text-center">
+          <span className="block text-xl sm:text-4xl md:text-5xl lg:text-6xl">
             Welcome to
           </span>
-          <span className="block text-red-400 font-extrabold text-4xl sm:whitespace-nowrap sm:text-7xl md:text-8xl">
+          <span className="block text-red-400 font-extrabold text-4xl sm:whitespace-nowrap sm:text-6xl md:text-7xl lg:text-8xl">
             Tanik Foods
           </span>
         </h1>
@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
           Healthy Option, Easy Cooking.
         </p>
 
-        <div className="flex md:flex-col flex-row items-center mx-auto gap-3 lg:flex-row lg:space-x-5 lg:space-y-0">
+        <div className="flex flex-row items-center mx-auto gap-3 lg:flex-row lg:space-x-5 lg:space-y-0">
           <button className="px-2 py-2 bg-red-600 hover:bg-red-800 rounded-md">
             <Link
               to="/shop"

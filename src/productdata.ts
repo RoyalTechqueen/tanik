@@ -30,7 +30,7 @@ export const products: Product[] = [
     title: "Black Seed and Mint  (BLASMIN)",
     price: 2000,
     category: "Healthy Teas",
-    size: "",
+    size: "20 teabags",
   },
   {
     id: 4,
@@ -76,7 +76,7 @@ export const products: Product[] = [
     id: 9,
     image: "/zobo.jpg",
     title: "Zobo(Hibiscus) ",
-    size: "",
+    size: "20 teabags",
     price: 2000,
     category: "Healthy Teas",
   },
@@ -126,7 +126,7 @@ export const products: Product[] = [
     title: "Ginger ",
     price: 2000,
     category: "Healthy Teas",
-    size: "",
+    size: "20 teabags",
   },
   {
     id: 16,
@@ -134,7 +134,7 @@ export const products: Product[] = [
     title: "Red Velvet Cake Mix",
     price: 3700,
     category: "Pastry Mix",
-    size: "630",
+    size: "630grms",
   },
   {
     id: 17,
@@ -182,7 +182,7 @@ export const products: Product[] = [
     title: "Cinnamon and Ginger  (CINGER)",
     price: 2000,
     category: "Healthy Teas",
-    size: "",
+    size: "20 teabags",
   },
   {
     id: 23,
@@ -244,7 +244,7 @@ export const products: Product[] = [
     id: 30,
     image: "/vanilla.jpg",
     title: "Vanilla Cake Mix",
-    price: 2500,
+    price: 3500,
     category: "Pastry Mix",
     size: "730grms",
   },

@@ -24,7 +24,7 @@ const Cart: React.FC = () => {
   }, 0);
 
   return (
-    <div className="container mx-auto bg-red-50 min-h-screen flex flex-col">
+    <div className="bg-red-50 min-h-screen flex flex-col">
       <Header />
       <div className="p-4 flex-1 overflow-y-auto">
         <h1 className="text-xl font-bold mt-24 text-center">Cart Page</h1>

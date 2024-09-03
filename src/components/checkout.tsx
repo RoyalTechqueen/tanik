@@ -51,7 +51,7 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto bg-red-50 min-h-screen">
+    <div className="bg-red-50 min-h-screen">
       <Header />
       <div className="p-4 overflow-y-auto">
         <h1 className="text-2xl font-bold mt-24 text-center">Checkout Page</h1>

@@ -49,12 +49,11 @@ const Productpage: React.FC = () => {
               <option value="Natural Seasoning">Natural Seasonings</option>
               <option value="Pastry Mix">Pastry Mix</option>
               <option value="Healthy Meals">Healthy Meals</option>
-              <option value="Spices">Spices</option>
               <option value="Healthy Teas">Healthy Teas</option>
             </select>
           </div>
         </div>
-        <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 max-w-screen-8xl mx-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6  gap-6">
           {currentItems.map((product) => (
             <ProductCard
               key={product.id}
