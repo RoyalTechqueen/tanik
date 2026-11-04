@@ -13,7 +13,7 @@ import { useCartStore } from "../store";
 import Header from "../header";
 import Footer from "../footer";
 
-const WHATSAPP_NUMBER = "2348085032329";
+const WHATSAPP_NUMBER = "2347036104433";
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat("en-NG", {

@@ -284,7 +284,7 @@ export const products: Product[] = [
   },
   {
     id: 27,
-    title: "3-in-1 Creamy Tea",
+    title: "3-in-1 Chocolate Tea",
     category: "Healthy Meals",
     image: "/tea.png",
     variants: [
