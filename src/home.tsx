@@ -1,18 +1,22 @@
-import "./index.css";
+
 import React from "react";
-import Hero from "./components/hero";
-import BestSeller from "./components/bestseller";
-import Productpage from "./components/productpage";
 import Header from "./header";
+import Hero from "./components/hero";
+import CategorySection from "./components/categorysection";
+import Productpage from "./components/productpage";
 import Footer from "./footer";
 
 const Home: React.FC = () => {
   return (
-    <div className="bg-red-50">
+    <div className="min-h-screen bg-[#FFF8EC]">
       <Header />
-      <Hero />
-      <BestSeller />
-      <Productpage />
+
+      <main>
+        <Hero />
+        <CategorySection />
+        <Productpage />
+      </main>
+
       <Footer />
     </div>
   );

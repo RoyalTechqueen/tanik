@@ -1,3 +1,4 @@
+
 import { create } from "zustand";
 import { toast } from "react-toastify";
 
@@ -16,7 +17,7 @@ interface CartItem extends Product {
 interface StoreState {
   items: Product[];
   cart: CartItem[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
   clearCheckout: () => void;
@@ -28,47 +29,67 @@ interface StoreState {
 const useCartStore = create<StoreState>((set, get) => ({
   items: [],
   cart: [],
-  addToCart: (item) => {
-    const existingItem = get().cart.find((cart) => cart.id === item.id);
+
+  addToCart: (item, quantity = 1) => {
+    const existingItem = get().cart.find(
+      (cartItem) => cartItem.id === item.id
+    );
+
     if (existingItem) {
       set((state) => ({
-        cart: state.cart.map((cart) =>
-          cart.id === item.id ? { ...cart, quantity: cart.quantity + 1 } : cart
+        cart: state.cart.map((cartItem) =>
+          cartItem.id === item.id
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity + quantity,
+              }
+            : cartItem
         ),
       }));
-      toast.success("Item already in cart!");
     } else {
       set((state) => ({
-        cart: [...state.cart, { ...item, quantity: 1 }],
+        cart: [
+          ...state.cart,
+          { ...item, quantity },
+        ],
       }));
-      toast.success("Item Added to cart!");
     }
+
+    toast.success(
+      quantity > 1
+        ? `${quantity} items added to cart!`
+        : "Item added to cart!"
+    );
   },
-  removeFromCart: (id: number) => {
+
+  removeFromCart: (id) => {
     set((state) => ({
       cart: state.cart.filter((item) => item.id !== id),
     }));
+
     toast.info("Item removed from cart");
   },
+
   clearCart: () => {
-    set(() => ({
-      cart: [],
-    }));
+    set({ cart: [] });
     toast.info("Cart cleared");
   },
+
   clearCheckout: () => {
-    set(() => ({
-      cart: [],
-    }));
-    toast.info("Order Placed");
+    set({ cart: [] });
+    toast.info("Order placed");
   },
-  increaseQuantity: (id: number) =>
+
+  increaseQuantity: (id) =>
     set((state) => ({
       cart: state.cart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       ),
     })),
-  decreaseQuantity: (id: number) =>
+
+  decreaseQuantity: (id) =>
     set((state) => ({
       cart: state.cart.map((item) =>
         item.id === id && item.quantity > 1
@@ -76,13 +97,12 @@ const useCartStore = create<StoreState>((set, get) => ({
           : item
       ),
     })),
-  getCartItemCount: () => {
-    const state = get();
-    return state.cart.reduce(
-      (acc: number, item: CartItem) => acc + item.quantity,
+
+  getCartItemCount: () =>
+    get().cart.reduce(
+      (total, item) => total + item.quantity,
       0
-    );
-  },
+    ),
 }));
 
 export { useCartStore };

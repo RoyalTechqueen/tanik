@@ -1,6 +1,50 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =====================================
+   TANIK FOODS - DESIGN SYSTEM
+===================================== */
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+
+  /* Brand Colors */
+  --color-primary: #174D32;
+  --color-primary-dark: #103923;
+  --color-secondary: #F36B35;
+  --color-accent: #F5C64B;
+
+  /* Neutral Colors */
+  --color-background: #FFF8EC;
+  --color-surface: #FFFFFF;
+  --color-text: #292929;
+  --color-muted: #777777;
+  --color-border: #EAE3D7;
+
+  /* UI */
+  --color-success: #25834B;
+  --color-danger: #E53935;
+
+  /* Effects */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================================
+   RESET
+===================================== */
 
 * {
   box-sizing: border-box;
@@ -8,23 +52,153 @@
   padding: 0;
 }
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
-}
-
-a {
-  font-weight: 500;
-  color: black;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #141414;
+  scroll-padding-top: 90px;
 }
 
 body {
-  height: 100vh;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* =====================================
+   TYPOGRAPHY
+===================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.7;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =====================================
+   LINKS
+===================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* =====================================
+   IMAGES
+===================================== */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* =====================================
+   SELECTION
+===================================== */
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-primary-dark);
+}
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* =====================================
+   SCROLLBAR
+===================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* =====================================
+   REUSABLE BRAND UTILITIES
+===================================== */
+
+@layer components {
+  .section-container {
+    @apply mx-auto w-full max-w-7xl px-5 md:px-8 lg:px-12;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold md:text-4xl;
+    color: var(--color-primary);
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-semibold text-white transition-all duration-300;
+    background-color: var(--color-primary);
+  }
+
+  .primary-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 font-semibold transition-all duration-300;
+    background-color: var(--color-secondary);
+    color: white;
+  }
+
+  .secondary-button:hover {
+    background-color: #DE5727;
+    transform: translateY(-2px);
+  }
+}
+
+/* =====================================
+   RESPONSIVENESS
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
