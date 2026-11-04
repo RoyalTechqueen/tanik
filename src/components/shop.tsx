@@ -111,21 +111,22 @@ const Shop: React.FC = () => {
     }
   };
 
-  const handleQuickAdd = (product: (typeof products)[number]) => {
-    const variant = product.variants[0];
+ 
+const handleQuickAdd = (product: (typeof products)[number]) => {
+  const variant = product.variants[0];
 
-    if (!variant) return;
+  if (!variant) return;
 
-    addToCart(
-      {
-        id: product.id,
-        title: product.title,
-        price: variant.price,
-        size: variant.size,
-        image: product.image,
-      }
-    );
-  };
+  addToCart({
+    id: product.id,
+    variantId: variant.id,
+    title: product.title,
+    price: variant.price,
+    size: variant.size,
+    image: product.image,
+  });
+};
+
 
   return (
     <div className="min-h-screen bg-[#FFF8EC]">

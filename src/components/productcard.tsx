@@ -40,6 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     addToCart({
       id: product.id,
+      variantId: firstVariant.id,
       title: product.title,
       price: firstVariant.price,
       image: product.image,
@@ -79,7 +80,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {product.category}
         </p>
 
-        <Link to={`/product/${product.id}`} onClick={onClick}>
+        <Link
+          to={`/product/${product.id}`}
+          onClick={onClick}
+        >
           <h3 className="mt-2 min-h-[3rem] text-base font-bold leading-snug text-[#292929] transition-colors group-hover:text-[#174D32] sm:text-lg">
             {product.title}
           </h3>

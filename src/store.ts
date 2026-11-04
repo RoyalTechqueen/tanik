@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 interface Product {
   id: number;
+  variantId: string;
   title: string;
   price: number;
   image: string;
@@ -18,11 +19,11 @@ interface StoreState {
   items: Product[];
   cart: CartItem[];
   addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: number, variantId: string) => void;
   clearCart: () => void;
   clearCheckout: () => void;
-  increaseQuantity: (id: number) => void;
-  decreaseQuantity: (id: number) => void;
+  increaseQuantity: (id: number, variantId: string) => void;
+  decreaseQuantity: (id: number, variantId: string) => void;
   getCartItemCount: () => number;
 }
 
@@ -32,13 +33,16 @@ const useCartStore = create<StoreState>((set, get) => ({
 
   addToCart: (item, quantity = 1) => {
     const existingItem = get().cart.find(
-      (cartItem) => cartItem.id === item.id
+      (cartItem) =>
+        cartItem.id === item.id &&
+        cartItem.variantId === item.variantId
     );
 
     if (existingItem) {
       set((state) => ({
         cart: state.cart.map((cartItem) =>
-          cartItem.id === item.id
+          cartItem.id === item.id &&
+          cartItem.variantId === item.variantId
             ? {
                 ...cartItem,
                 quantity: cartItem.quantity + quantity,
@@ -48,10 +52,7 @@ const useCartStore = create<StoreState>((set, get) => ({
       }));
     } else {
       set((state) => ({
-        cart: [
-          ...state.cart,
-          { ...item, quantity },
-        ],
+        cart: [...state.cart, { ...item, quantity }],
       }));
     }
 
@@ -62,9 +63,12 @@ const useCartStore = create<StoreState>((set, get) => ({
     );
   },
 
-  removeFromCart: (id) => {
+  removeFromCart: (id, variantId) => {
     set((state) => ({
-      cart: state.cart.filter((item) => item.id !== id),
+      cart: state.cart.filter(
+        (item) =>
+          !(item.id === id && item.variantId === variantId)
+      ),
     }));
 
     toast.info("Item removed from cart");
@@ -80,19 +84,21 @@ const useCartStore = create<StoreState>((set, get) => ({
     toast.info("Order placed");
   },
 
-  increaseQuantity: (id) =>
+  increaseQuantity: (id, variantId) =>
     set((state) => ({
       cart: state.cart.map((item) =>
-        item.id === id
+        item.id === id && item.variantId === variantId
           ? { ...item, quantity: item.quantity + 1 }
           : item
       ),
     })),
 
-  decreaseQuantity: (id) =>
+  decreaseQuantity: (id, variantId) =>
     set((state) => ({
       cart: state.cart.map((item) =>
-        item.id === id && item.quantity > 1
+        item.id === id &&
+        item.variantId === variantId &&
+        item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       ),

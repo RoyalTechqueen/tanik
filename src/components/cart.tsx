@@ -111,7 +111,7 @@ const Cart: React.FC = () => {
 
               {cart.map((item) => (
                 <article
-                  key={item.id}
+                  key={`${item.id}-${item.variantId}`}
                   className="flex flex-col gap-4 rounded-2xl border border-[#174D32]/10 bg-white p-4 shadow-sm sm:flex-row sm:items-center"
                 >
                   {/* Product image */}
@@ -150,9 +150,12 @@ const Cart: React.FC = () => {
                       <div className="flex items-center rounded-full border border-[#174D32]/15">
                         <button
                           type="button"
-                          aria-label={`Decrease quantity of ${item.title}`}
-                          onClick={() => decreaseQuantity(item.id)}
-                          className="flex h-9 w-9 items-center justify-center rounded-full text-[#174D32] transition hover:bg-[#174D32]/10"
+                          aria-label={`Decrease quantity of ${item.title} ${item.size}`}
+                          onClick={() =>
+                            decreaseQuantity(item.id, item.variantId)
+                          }
+                          disabled={item.quantity <= 1}
+                          className="flex h-9 w-9 items-center justify-center rounded-full text-[#174D32] transition hover:bg-[#174D32]/10 disabled:cursor-not-allowed disabled:opacity-40"
                         >
                           <FaMinus className="text-xs" />
                         </button>
@@ -163,8 +166,10 @@ const Cart: React.FC = () => {
 
                         <button
                           type="button"
-                          aria-label={`Increase quantity of ${item.title}`}
-                          onClick={() => increaseQuantity(item.id)}
+                          aria-label={`Increase quantity of ${item.title} ${item.size}`}
+                          onClick={() =>
+                            increaseQuantity(item.id, item.variantId)
+                          }
                           className="flex h-9 w-9 items-center justify-center rounded-full text-[#174D32] transition hover:bg-[#174D32]/10"
                         >
                           <FaPlus className="text-xs" />
@@ -174,8 +179,10 @@ const Cart: React.FC = () => {
                       {/* Remove item */}
                       <button
                         type="button"
-                        aria-label={`Remove ${item.title} from cart`}
-                        onClick={() => removeFromCart(item.id)}
+                        aria-label={`Remove ${item.title} ${item.size} from cart`}
+                        onClick={() =>
+                          removeFromCart(item.id, item.variantId)
+                        }
                         className="flex h-10 w-10 items-center justify-center rounded-full text-red-500 transition hover:bg-red-50"
                       >
                         <FaRegTrashAlt />
@@ -199,13 +206,14 @@ const Cart: React.FC = () => {
               <div className="my-6 space-y-4">
                 {cart.map((item) => (
                   <div
-                    key={item.id}
+                    key={`${item.id}-${item.variantId}`}
                     className="flex justify-between gap-4 text-sm"
                   >
                     <div className="min-w-0">
                       <p className="font-medium text-[#292929]">
                         {item.title}
                       </p>
+
                       <p className="mt-1 text-xs text-gray-500">
                         {item.size} × {item.quantity}
                       </p>

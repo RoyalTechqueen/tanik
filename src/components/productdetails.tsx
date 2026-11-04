@@ -66,18 +66,21 @@ const ProductDetails: React.FC = () => {
     );
   }
 
-  const handleAddToCart = () => {
-    addToCart(
-      {
-        id: product.id,
-        title: product.title,
-        price: selectedVariant.price,
-        size: selectedVariant.size,
-        image: product.image,
-      },
-      quantity
-    );
-  };
+ 
+const handleAddToCart = () => {
+  addToCart(
+    {
+      id: product.id,
+      variantId: selectedVariant.id,
+      title: product.title,
+      price: selectedVariant.price,
+      size: selectedVariant.size,
+      image: product.image,
+    },
+    quantity
+  );
+};
+
 
   const relatedProducts = products
     .filter(
@@ -248,7 +251,7 @@ const ProductDetails: React.FC = () => {
 
                 <Link
                   to="/shop"
-                  className="hidden items-center gap-2 font-bold text-[#174D32] sm:inline-flex"
+                  className=" items-center gap-2 font-bold text-[#174D32] sm:inline-flex"
                 >
                   View all
                   <HiArrowRight />
